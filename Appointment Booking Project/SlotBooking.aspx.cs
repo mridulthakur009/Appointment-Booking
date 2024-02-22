@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
+using System.Drawing;
 
 namespace WebApplication1.slot_booking
 {
@@ -47,11 +48,16 @@ namespace WebApplication1.slot_booking
         {
             DateTime dates = Calendar1.SelectedDate.Date;
 
-            SqlCommand cmd = new SqlCommand("INSERT INTO Appointment(AppointmentDate,SlotId,TimeId) VALUES(@ad,@sid,@tid)", conn);
-            //cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@ad", Calendar1.SelectedDate.Date);
-            cmd.Parameters.AddWithValue("@sid", AppointmentDurationList.SelectedItem.Text);
+            if (AppointmentDurationList.SelectedItem.Text == "1") // then same slot book should be hidden to user
+            {
+                SqlCommand cmd = new SqlCommand("INSERT INTO Appointment(AppointmentDate,SlotId,TimeId) VALUES(@ad,@sid,@tid)", conn);
+                //cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@ad", Calendar1.SelectedDate.Date);
+                cmd.Parameters.AddWithValue("@sid", AppointmentDurationList.SelectedItem.Text);
+                cmd.Parameters.AddWithValue("@tid", AppointmentTimeList.SelectedItem.Text);
 
+
+            }
             //if (Calendar1.SelectedDate.Date == DateTime.Today)
             //{
             //    SqlCommand cmd = new SqlCommand("InsertAppointment", conn);
@@ -61,7 +67,7 @@ namespace WebApplication1.slot_booking
             //    cmd.Parameters.AddWithValue("AppointmentTime", AppointmentTimeList.SelectedItem.Text);
             //    int Isbooked;
             //    if (AppointmentTimeList.SelectedValue == AppointmentTimeList.SelectedValue)
-            //    {---
+            //    {
             //        Isbooked = 1;
             //    }
             //    else
@@ -72,6 +78,16 @@ namespace WebApplication1.slot_booking
             //    cmd.ExecuteNonQuery();
             //    Remove();
             //}
+        }
+
+        //Prevent User from Selecting Previous Date
+        protected void CalenderPreviousDate(object sender, DayRenderEventArgs e)
+        {
+            if (e.Day.Date < System.DateTime.Today)
+            {
+                e.Day.IsSelectable = false;
+                e.Cell.ForeColor = Color.LightGray;
+            }
         }
 
         public void Remove()
@@ -134,12 +150,6 @@ namespace WebApplication1.slot_booking
         //}
 
 
-        protected void Calendar1_DayRender(object sender, DayRenderEventArgs e)
-        {
-            if (e.Day.Date.CompareTo(DateTime.Today) < 0)
-            {
-                e.Day.IsSelectable = false;
-            }
-        }
+
     }
 }
