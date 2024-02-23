@@ -17,7 +17,7 @@
                 <br />
             </div>
             <div>
-                <asp:Calendar ID="Calendar1" runat="server" BackColor="White" BorderColor="Black" DayNameFormat="Shortest" OnDayRender="CalenderPreviousDate" Font-Names="poppins"
+                <asp:Calendar ID="Calendar1" OnSelectionChanged="Calendar1_SelectionChanged" runat="server" BackColor="White" BorderColor="Black" DayNameFormat="Shortest" OnDayRender="CalenderPreviousDate" Font-Names="poppins"
                     Font-Size="15pt" ForeColor="Black" Height="260px" Width="478px" NextPrevFormat="FullMonth" TitleFormat="Month">
                     <DayHeaderStyle BackColor="#CCCCCC" Font-Bold="True" Font-Size="15pt" ForeColor="#333333" Height="10pt" />
                     <DayStyle Width="14%" />
@@ -35,8 +35,6 @@
                 <asp:Label ID="Label1" runat="server" Text="Appointment Duration"></asp:Label><br />
                 <br />
                 <asp:DropDownList ID="AppointmentDurationList" runat="server"
-                    DataTextField="SlotDuration"
-                    DataValueField="SlotId"
                     AppendDataBoundItems="true">
                     <asp:ListItem Selected="False">---- Select Duration ----</asp:ListItem>
                 </asp:DropDownList>
@@ -45,10 +43,9 @@
                 <asp:Label ID="Label2" runat="server" Text="Appointment Time"></asp:Label><br />
                 <br />
                 <asp:DropDownList ID="AppointmentTimeList" runat="server"
-                    DataValueField="TimeId"
-                    DataTextField="Time"
-                    AppendDataBoundItems="true">
-                    <asp:ListItem Selected="False">---- Select Slot ----</asp:ListItem>
+                   
+                    AppendDataBoundItems="false">
+                    <asp:ListItem Selected="true">---- Select Slot ----</asp:ListItem>
                 </asp:DropDownList>
                 <br />
                 <br />

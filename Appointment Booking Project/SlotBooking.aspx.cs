@@ -20,10 +20,10 @@ namespace WebApplication1.slot_booking
             conn = new SqlConnection(CS);
             conn.Open();
             if(!IsPostBack)
-            {
-                AppointmentDurationDropDown();
-                AppointmentTimeDropDown();
+            {            
+                AppointmentDurationDropDown();                
             }
+
         }
         public void AppointmentDurationDropDown()
         {
@@ -31,18 +31,28 @@ namespace WebApplication1.slot_booking
             cmd.CommandType = CommandType.StoredProcedure;
             SqlDataReader reader = cmd.ExecuteReader();
             AppointmentDurationList.DataSource = reader;
+            AppointmentDurationList.DataTextField = "SlotDuration";
+            AppointmentDurationList.DataValueField = "SlotId";
             AppointmentDurationList.DataBind();
-            reader.Close();
-            
+            reader.Close();           
         }
+
         public void AppointmentTimeDropDown()
-        {
+        {         
             SqlCommand cmd = new SqlCommand("sp_getDuration", conn);
             cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@ad", Calendar1.SelectedDate.Date);
             SqlDataReader reader = cmd.ExecuteReader();
             AppointmentTimeList.DataSource = reader;
+            AppointmentTimeList.DataValueField = "TimeId";
+            AppointmentTimeList.DataTextField = "Time";
+
             AppointmentTimeList.DataBind();
             reader.Close();
+        }
+        protected void Calendar1_SelectionChanged(object sender, EventArgs e)
+        {
+            AppointmentTimeDropDown();
         }
         protected void Button1_Click(object sender, EventArgs e)
         {
@@ -53,9 +63,14 @@ namespace WebApplication1.slot_booking
                 SqlCommand cmd = new SqlCommand("INSERT INTO Appointment(AppointmentDate,SlotId,TimeId) VALUES(@ad,@sid,@tid)", conn);
                 //cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@ad", Calendar1.SelectedDate.Date);
-                cmd.Parameters.AddWithValue("@sid", AppointmentDurationList.SelectedItem.Text);
-                cmd.Parameters.AddWithValue("@tid", AppointmentTimeList.SelectedItem.Text);
+                cmd.Parameters.AddWithValue("@sid", AppointmentDurationList.SelectedValue);
+                cmd.Parameters.AddWithValue("@tid", AppointmentTimeList.SelectedValue);
 
+                cmd.ExecuteNonQuery();
+                AppointmentTimeDropDown();                
+            }
+            else
+            {
 
             }
             //if (Calendar1.SelectedDate.Date == DateTime.Today)
@@ -90,6 +105,23 @@ namespace WebApplication1.slot_booking
             }
         }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         public void Remove()
         {
             //SqlCommand cmd = new SqlCommand("RemoveAppointment", conn);
@@ -104,6 +136,8 @@ namespace WebApplication1.slot_booking
             //da.Fill(dt);
             //AppointmentTimeList.DataBind();
         }
+
+
         //public void Remove()
         //{
         //    int selectedIndex = AppointmentTimeList.SelectedIndex;
