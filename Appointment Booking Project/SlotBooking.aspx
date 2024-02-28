@@ -35,7 +35,7 @@
                 <asp:Label ID="Label1" runat="server" Text="Appointment Duration"></asp:Label><br />
                 <br />
                 <asp:DropDownList ID="AppointmentDurationList" runat="server"
-                    AppendDataBoundItems="true">
+                    AppendDataBoundItems="false" OnSelectedIndexChanged="AppointmentDurationList_SelectedIndexChanged">
                     <asp:ListItem Selected="False">---- Select Duration ----</asp:ListItem>
                 </asp:DropDownList>
                 <br />
