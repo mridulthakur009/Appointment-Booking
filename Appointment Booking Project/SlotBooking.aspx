@@ -34,7 +34,7 @@
             <div>
                 <asp:Label ID="Label1" runat="server" Text="Appointment Duration"></asp:Label><br />
                 <br />
-                <asp:DropDownList ID="AppointmentDurationList" runat="server"
+                <asp:DropDownList ID="AppointmentDurationList" runat="server" AutoPostBack="true"
                     AppendDataBoundItems="false" OnSelectedIndexChanged="AppointmentDurationList_SelectedIndexChanged">
                     <asp:ListItem Selected="False">---- Select Duration ----</asp:ListItem>
                 </asp:DropDownList>
@@ -42,8 +42,7 @@
                 <br />
                 <asp:Label ID="Label2" runat="server" Text="Appointment Time"></asp:Label><br />
                 <br />
-                <asp:DropDownList ID="AppointmentTimeList" runat="server"
-                   
+                <asp:DropDownList ID="AppointmentTimeList" runat="server"                   
                     AppendDataBoundItems="false">
                     <asp:ListItem Selected="true">---- Select Slot ----</asp:ListItem>
                 </asp:DropDownList>
