@@ -14,7 +14,7 @@ namespace WebApplication1.slot_booking
 {
     public partial class SlotBooking : System.Web.UI.Page
     {
-        private SqlConnection con;
+        public SqlConnection con;
         protected void Page_Load(object sender, EventArgs e)
         {
             string CS = ConfigurationManager.ConnectionStrings["conStr"].ConnectionString;
@@ -69,8 +69,7 @@ namespace WebApplication1.slot_booking
 
                 AppointmentTimeList.DataBind();
                 reader.Close();
-            }
-            
+            }            
         }
         protected void Calendar1_SelectionChanged(object sender, EventArgs e)
         {
