@@ -114,7 +114,6 @@ namespace WebApplication1.slot_booking
                 MessageBox.Show("Unable to Book the Appointment");   
             }
         }
-
         //Prevent User from Selecting Previous Date
         protected void CalenderPreviousDate(object sender, DayRenderEventArgs e)
         {
@@ -128,85 +127,5 @@ namespace WebApplication1.slot_booking
         {
             AppointmentTimeDropDown();
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        public void Remove()
-        {
-            //SqlCommand cmd = new SqlCommand("RemoveAppointment", con);
-            //cmd.CommandType = CommandType.StoredProcedure;
-            //int SelectedIndex = Convert.ToInt32(AppointmentTimeList.SelectedItem.Value);
-            //int AppointmentDuration = Convert.ToInt32(AppointmentDurationList.SelectedItem.Value);
-            //cmd.Parameters.AddWithValue("@SelectedIndex", SelectedIndex);
-            //cmd.Parameters.AddWithValue("@AppointmentDuration", AppointmentDuration);
-            //cmd.ExecuteNonQuery();
-            //SqlDataAdapter da = new SqlDataAdapter(cmd);
-            //DataTable dt = new DataTable();
-            //da.Fill(dt);
-            //AppointmentTimeList.DataBind();
-        }      
-
-
-        //public void Remove()
-        //{
-        //    int selectedIndex = AppointmentTimeList.SelectedIndex;
-
-        //    if (selectedIndex != -1)
-        //    {
-        //        AppointmentTimeList.Items.RemoveAt(selectedIndex);
-        //        if (Convert.ToInt32(AppointmentDurationList.SelectedItem.Value) == 2 && selectedIndex < AppointmentTimeList.Items.Count)
-        //        {
-        //            AppointmentTimeList.Items.RemoveAt(selectedIndex);
-        //        }
-        //        AppointmentTimeList.DataBind();
-        //    }
-        //}
-        //public void remove()
-        //{
-        //    if (Convert.ToInt32(AppointmentDurationList.SelectedItem.Value) == 2)
-        //    {
-        //        for (int i = Convert.ToInt32(AppointmentDurationList.SelectedItem.Value); i <= 3; i++)
-        //        {
-        //            AppointmentTimeList.Items.Remove(AppointmentTimeList.SelectedItem);
-        //        }
-        //        AppointmentTimeList.DataBind();
-        //    }
-        //    else
-        //    {
-        //        AppointmentTimeList.Items.Remove(AppointmentTimeList.SelectedItem);
-        //        AppointmentTimeList.DataBind();
-        //    }
-        //}
-        //public void remove()
-        //{
-        //    if(Convert.ToInt32(AppointmentDurationList.SelectedItem.Value)==2)
-        //    {
-
-        //        AppointmentTimeList.Items.Remove(AppointmentTimeList.SelectedItem);
-        //        AppointmentTimeList.DataBind();
-        //    }
-        //    else
-        //    {
-        //        AppointmentTimeList.Items.Remove(AppointmentTimeList.SelectedItem);
-        //        AppointmentTimeList.DataBind();
-        //    }
-        //}
-
-
-
     }
 }
