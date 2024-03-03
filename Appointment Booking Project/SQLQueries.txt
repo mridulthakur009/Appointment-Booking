@@ -1,0 +1,16 @@
+﻿sp_getDuration
+SELECT t.*FROM[Time] t left join Appointment a on t.TimeID = a.TimeID AND a.AppointmentDate = @ad WHERE a.AppointmentDate IS NULL
+
+sp_getDuration1
+SELECT t.*FROM[Time] t left join Appointment a on t.TimeID = a.TimeID AND a.AppointmentDate = @ad WHERE a.AppointmentDate IS NULL
+
+sp_getSlot
+SELECT* FROM TimeSlot
+
+sp_OneHour
+INSERT INTO Appointment(AppointmentDate,SlotId,TimeId) VALUES(@ad,@sid,@tid)
+
+sp_TwoHour
+INSERT INTO Appointment(AppointmentDate,SlotId,TimeId) VALUES(@ad,@sid,@tid)
+
+
